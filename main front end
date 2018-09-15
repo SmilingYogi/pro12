@@ -1,1 +1,29 @@
-
+#include<iostream.h>
+#include<stdio.h>
+#include<conio.h>
+void login();
+void main()
+{
+ clrscr();
+ cout<<"/t Welcome to VJSRM system..";
+ cout<<"1.Login"<<endl;
+ cout<<"2.Custemer care"<<endl;
+ cout<<"3.shutdown"<<endl;
+ cin>>o;
+ switch(o)
+ {
+  case 1:login();
+	 break;
+  case 2:cout<<"cntrct fgdtrh";
+	 break;
+  case 3:exit(0);
+ }
+ void login()
+ {
+  cout<<"Enter usename:"<<endl;
+  cin.getline(uname,20);
+  cout<<"Enter password:"<<endl;
+  cin.getline(pass,20);
+  if(strcmp(pass,"gobanvj1")==0)
+  cout<<"login succesful
+ }
