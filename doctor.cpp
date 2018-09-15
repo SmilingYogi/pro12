@@ -8,9 +8,16 @@ int docfees;
 };
 void main()
 {
+int c;  
 clrscr();
-cout<<"Make your choice
-cout<<"Register new doctor"<<endl;
-cout<<"View doctor list"<<endl;
-cout<<"Remove doctor"<<endl;
+cout<<"1.Make your choice
+cout<<"2.Register new doctor"<<endl;
+cout<<"3.View doctor list"<<endl;
+cout<<"4.Remove doctor"<<endl;
+switch(c)
+ { case 1:
+          break;
+  case 2:
+          break;
 
+  
