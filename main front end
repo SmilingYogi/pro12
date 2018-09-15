@@ -1,11 +1,14 @@
 #include<iostream.h>
 #include<stdio.h>
 #include<conio.h>
+#include<process.h>
+#include<string.h>
 void login();
 void main()
 {
+ int o;
  clrscr();
- cout<<"/t Welcome to VJSRM system..";
+ cout<<"\t \t\tWelcome to VJSRM system.."<<endl;
  cout<<"1.Login"<<endl;
  cout<<"2.Custemer care"<<endl;
  cout<<"3.shutdown"<<endl;
@@ -14,16 +17,23 @@ void main()
  {
   case 1:login();
 	 break;
-  case 2:cout<<"cntrct fgdtrh";
+  case 2:cout<<"vjsrm web developers"<<endl;
+	 cout<<"palladam road"<<endl;
+	 cout<<"puliampatti (p.o),pollachi"<<endl;
+	 cout<<"4242435546"<<endl;
+	 cout<<"http://www.vjsrmdevelopers.com"<<endl;
 	 break;
   case 3:exit(0);
  }
+ getch();
+ }
  void login()
  {
+  char uname[20];
+  char pass[20];
   cout<<"Enter usename:"<<endl;
-  cin.getline(uname,20);
+  gets(uname);
   cout<<"Enter password:"<<endl;
-  cin.getline(pass,20);
-  if(strcmp(pass,"gobanvj1")==0)
-  cout<<"login succesful
- }
+  gets(pass);
+  if(strcmpi(pass,"gobanvj1")==0)
+  {
