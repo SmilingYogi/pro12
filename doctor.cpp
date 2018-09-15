@@ -5,6 +5,15 @@ class doctor
 char docname[20];
 char docspecial[20];
 int docexp;
+int docfee;
+void setfee()
+{if (docexp<10)
+ docfee=250;
+ else if(docexp<20)
+ docfee=400;
+ else
+  docfee=600;
+}
 };
 void main()
 {
