@@ -4,20 +4,38 @@ class doctor
 {
 char docname[20];
 char docspecial[20];
-int docfees;
+int docexp;
 };
 void main()
 {
 int c;  
 clrscr();
-cout<<"1.Make your choice
-cout<<"2.Register new doctor"<<endl;
-cout<<"3.View doctor list"<<endl;
-cout<<"4.Remove doctor"<<endl;
+cout<<"Make your choice
+cout<<"1.Register new doctor"<<endl;
+cout<<"2.View doctor list"<<endl;
+cout<<"3.Remove doctor"<<endl;
+cout<<"4.Edit doctor"<<endl; 
+cout<<"5.Exit"<<endl;
 switch(c)
  { case 1:
           break;
-  case 2:
+   case 2:
           break;
-
-  
+  case 3:
+          break;
+  case 4:
+          break:
+  case 5:
+          exit(0);
+  default:
+          cout<<"Invalid choice!!!";
+ }
+ void adddoc()
+ {
+  doctor ob;
+  cout<<"Enter Doctor's name:";
+  gets(ob.docname);
+  cout<<"Enter Doctor speciality:";
+  gets(ob.docspecial);
+  cout<<"Enter years of experience";
+  cin>>docexp;
