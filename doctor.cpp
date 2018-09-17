@@ -1,6 +1,13 @@
 #include<fstream.h>
 #include<iostream.h>
 #include<conio.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+void adddoc();
+void dispdoc();
+void deldoc();
+void editdoc();
 class doctor
 {
 char docname[20];
@@ -37,37 +44,46 @@ char *getn()
 fstream fil;
 void main()
 {
-int c;  
+int c;
+char ch;
+ch='y';
 clrscr();
-cout<<"Make your choice
+while(ch=='y')
+{
+cout<<"Make your choice"<<endl;
 cout<<"1.Register new doctor"<<endl;
 cout<<"2.View doctor list"<<endl;
 cout<<"3.Remove doctor"<<endl;
-cout<<"4.Edit doctor"<<endl; 
+cout<<"4.Edit doctor"<<endl;
 cout<<"5.Exit"<<endl;
+cin>>c;
 switch(c)
  { case 1:
-         adddoc(); break;
+	 adddoc(); break;
    case 2:
-         dispdoc(); break;
-  case 3:
-         deldoc(); break;
-  case 4:
-         editdoc(); break:
-  case 5:
-          exit(0);
-  default:
-          cout<<"Invalid choice!!!";
+	 dispdoc(); break;
+   case 3:
+	 deldoc(); break;
+   case 4:
+	 editdoc(); break;
+   case 5:
+	  exit(0); break;
+   default:
+	  cout<<"Invalid choice!!!";
+ }
+ }
+ getch();
  }
  void adddoc()
- {   
+ {
 	fil.open("doc.dat",ios::app| ios::binary);
 		dob.input();
-		fil.write((char*)&fileobj, sizeof(dob));
-		
+		fil.write((char*)&dob,sizeof(dob));
+
 	fil.close();
+
 }
- void dispdoc()		//Function to Display All Record from Data 
+ void dispdoc()		//Function to Display All Record from Data
 {
 	fil.open("binary.dat",ios::in| ios::binary);
 	if(!fil)
@@ -88,7 +104,7 @@ switch(c)
 	}
 	fil.close();
 }
-void deldoc()		//Function to Delete Particular Record 
+void deldoc()		//Function to Delete Particular Record
 {
 	char n[100];
 	cout<<"Enter Name that should be Deleted :";
@@ -115,14 +131,14 @@ void deldoc()		//Function to Delete Particular Record
 				 cout<<"Press Any Key....For Search"<<endl;
 				 getch();
 			}
-			fil.read((char*)&fileobj, sizeof(fileobj));
+			fil.read((char*)&dob,sizeof(dob));
 		}
 	}
 	o.close();
 	fil.close();
 	remove("binary.dat");
 	rename("new.dat", "binary.dat");
-} 
+}
 void editdoc()		//Function to Modify Particular Record from Data File
 {
 	char n[100];
@@ -157,3 +173,6 @@ void editdoc()		//Function to Modify Particular Record from Data File
 	}
 	fil.close();
 }
+
+
+
