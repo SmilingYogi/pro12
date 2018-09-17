@@ -145,7 +145,7 @@ void editdoc()		//Function to Modify Particular Record from Data File
 				cout<<"Enter New Record.."<<endl;
 				dob.input();
 				fil.seekp(fil.tellg() - sizeof(dob));
-				fil.write((char*)&dob, sizeof(fileobj));
+				fil.write((char*)&dob, sizeof(dob));
 			}
 			else
 			{
