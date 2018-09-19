@@ -12,6 +12,7 @@ class doctor
 {
 char docname[20];
 char docspecial[20];
+int docid;
 int docexp;
 int docfee;
 void setfee()
@@ -29,14 +30,16 @@ char *getn()
 	}
  void input()
  {
-  cout<<"Enter Doctor's name:";           gets(docname);
-  cout<<"Enter Doctor speciality:";       gets(docspecial);
-  cout<<"Enter years of experience";      cin>>docexp;
+  cout<<"Enter the Doctor's ID:"; cin>>docid;
+  cout<<"Enter Doctor's name:"; gets(docname);
+  cout<<"Enter Doctor speciality:"; gets(docspecial);
+  cout<<"Enter years of experience:"; cin>>docexp;
   setfee();
  }
  void show()
 {
- cout<<"Name==> "<<docname<<endl;
+	cout<<"Doctor ID==> "<<docid<<endl;
+	cout<<"Name==> "<<docname<<endl;
 	cout<<"Speciality ==> "<<docspecial<<endl;
 	cout<<"Experience==> "<<docexp<<endl;
 }
@@ -71,21 +74,20 @@ switch(c)
    default:
 	  cout<<"Invalid choice!!!";
  }
- }
  getch();
  }
  void adddoc()
  {
-	fil.open("doc.dat",ios::app| ios::binary);
+	fil.open("doc.dat",ios::in| ios::binary);
 		dob.input();
 		fil.write((char*)&dob,sizeof(dob));
 
 	fil.close();
 
 }
- void dispdoc()		//Function to Display All Record from Data
+ void dispdoc()
 {
-	fil.open("binary.dat",ios::in| ios::binary);
+	fil.open("binary.dat",ios::in|ios::binary|ios::ate);
 	if(!fil)
 	{
 		cout<<"File not Found";
@@ -173,6 +175,7 @@ void editdoc()		//Function to Modify Particular Record from Data File
 	}
 	fil.close();
 }
+
 
 
 
