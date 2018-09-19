@@ -1,0 +1,24 @@
+#include<iostream.h>
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+void main()
+{
+clrscr();
+char str1[50];
+char str2[50];
+cin.getline(str1,50);
+cin.getline(str2,50);
+char *i;
+i=strstr(str1,str2);
+cout<<endl;
+cout<<endl;
+if(i)
+cout<<"string found";
+else
+cout<<"not found";
+getch();
+}
+
+
+
