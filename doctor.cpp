@@ -24,11 +24,14 @@ void setfee()
   docfee=600;
 }
  public:
-char *getn()
+int getn()
 	{
-		return docname;
+		return docid;
 	}
- void input()
+	void input();
+	void show();
+	}dob;
+void doctor::input()
  {
   cout<<"Enter the Doctor's ID:"; cin>>docid;
   cout<<"Enter Doctor's name:"; gets(docname);
@@ -36,14 +39,14 @@ char *getn()
   cout<<"Enter years of experience:"; cin>>docexp;
   setfee();
  }
- void show()
+void doctor::show()
 {
 	cout<<"Doctor ID==> "<<docid<<endl;
 	cout<<"Name==> "<<docname<<endl;
 	cout<<"Speciality ==> "<<docspecial<<endl;
 	cout<<"Experience==> "<<docexp<<endl;
 }
-}dob;
+
 fstream fil;
 void main()
 {
@@ -73,12 +76,12 @@ switch(c)
 	  exit(0); break;
    default:
 	  cout<<"Invalid choice!!!";
- }
+ }}
  getch();
  }
  void adddoc()
- {
-	fil.open("doc.dat",ios::in| ios::binary);
+ {     //ofstream fil;
+	fil.open("doc.dat",ios::out| ios::binary|ios::ate);
 		dob.input();
 		fil.write((char*)&dob,sizeof(dob));
 
@@ -86,34 +89,36 @@ switch(c)
 
 }
  void dispdoc()
-{
-	fil.open("binary.dat",ios::in|ios::binary|ios::ate);
-	if(!fil)
+{       ifstream filo;
+	filo.open("doc.dat",ios::in|ios::binary);
+	filo.seekg(0);
+       if(!filo)
 	{
 		cout<<"File not Found";
 		exit(0);
 	}
-	else
+       else
 	{
-		fil.read((char*)&dob, sizeof(dob));
-		while(!fil.eof())
-		{
+
+		while(!filo.eof())
+		{       filo.read((char*)&dob, sizeof(dob));
+			if(!filo.eof())
 			dob.show();
-			cout<<"Press Any Key....For Next Record"<<endl;
-			getch();
-			fil.read((char*)&dob, sizeof(dob));
+		       //	cout<<"Press Any Key....For Next Record"<<endl;
+		       //	getch();
+		       //	filo.read((char*)&dob, sizeof(dob));
 		}
 	}
-	fil.close();
+	filo.close();
 }
 void deldoc()		//Function to Delete Particular Record
 {
-	char n[100];
-	cout<<"Enter Name that should be Deleted :";
-	gets(n);
+	int n;
+	cout<<"Enter ID that should be Deleted :";
+	cin>>n;
 	ofstream o;
 	o.open("new.dat",ios::out|ios::binary);
-	fil.open("binary.dat",ios::in| ios::binary);
+	fil.open("doc.dat",ios::in| ios::binary);
 	if(!fil)
 	{
 		cout<<"File not Found";
@@ -124,29 +129,29 @@ void deldoc()		//Function to Delete Particular Record
 		fil.read((char*)&dob, sizeof(dob));
 		while(!fil.eof())
 		{
-			if(strcmp(n,dob.getn())!=0)
+			if(n!=dob.getn())
 			{
 				o.write((char*)&dob, sizeof(dob));
 			}
 			else
 			{
-				 cout<<"Press Any Key....For Search"<<endl;
-				 getch();
+				// cout<<"Press Any Key....For Search"<<endl;
+				 //getch();
 			}
 			fil.read((char*)&dob,sizeof(dob));
 		}
 	}
 	o.close();
 	fil.close();
-	remove("binary.dat");
-	rename("new.dat", "binary.dat");
+	remove("doc.dat");
+	rename("new.dat", "doc.dat");
 }
 void editdoc()		//Function to Modify Particular Record from Data File
 {
-	char n[100];
-	cout<<"Enter Name that should be searched:";
-	gets(n);
-	fil.open("binary.dat",ios::in| ios::out|ios::binary);
+	int n;
+	cout<<"Enter ID that should be searched:";
+	cin>>n;
+	fil.open("doc.dat",ios::in| ios::out|ios::binary);
 	if(!fil)
 	{
 		cout<<"File not Found";
@@ -157,7 +162,7 @@ void editdoc()		//Function to Modify Particular Record from Data File
 		fil.read((char*)&dob, sizeof(dob));
 		while(!fil.eof())
 		{
-			if(strcmp(n,dob.getn())==0)
+			if(n==dob.getn())
 			{
 				fil.seekg(0,ios::cur);
 				cout<<"Enter New Record.."<<endl;
