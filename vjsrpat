@@ -1,0 +1,28 @@
+#include<fstream.h>
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+void addpat();
+void disppat();
+void delpat();
+void editpat();
+class patient
+{
+  char name[20];
+  char address[100];
+  char contact[10];
+  char age[5];
+  char sex[8];
+  char blood_gp[5];
+  char disease_past[50];
+  char id[15];
+  public:
+  int getn()
+	{
+		return docid;
+	}
+	void input();
+	void show();
+	}dob;
