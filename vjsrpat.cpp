@@ -10,17 +10,24 @@ void addpat();
 void app();
 void view();
 void edit();
-class doctor
+struct patmain
+{
+int id;
+char name[20];
+char city[20];
+char blood_gp[5];
+}mob;
+class patient
 {
 public:
 char name[20];
-char address[100];
+char city[20];
 char contact[10];
 char age[5];
 char sex[8];
 char blood_gp[5];
 char disease_past[50];
-char id[15];
+int id;
 void input();
 void show();
 }pob;
@@ -59,19 +66,25 @@ void addpat()
 {
 time_t rawtime;
   struct tm * timeinfo;
-
-  time ( &rawtime );
+   time ( &rawtime );
   timeinfo = localtime ( &rawtime );
   cout<<"\n\n\t\t"<< asctime (timeinfo);
   ofstream pat_file;
+  ofstream mf;
+  mfob.open("mf.dat")  ;
+  patmain mob;
   char fname[20];
+  randomize();
+  int rid=1000+random(200);
+  mob.id=pob.id=rid;
+
   cout<<"\n\n\n\nEnter the patient's file name : ";
   cin.ignore();
   gets(fname);
   pat_file.open(fname);
 		if(!fname)
 		{
-		cout<<"\nError while opening the file\n";
+		cout<<"\nError creating the file\n";
 	       // return();
 		}
 		else
@@ -79,18 +92,20 @@ time_t rawtime;
 
 	    cout<<"\n********************************************************************\n";pat_file<<"\n********************************************************************\n\n";//fn1353 st
 
-	    cout<<"\nPatient ID : ";
+	    cout<<"\nPatient ID : "<<pob.id;
 	    pat_file<<"Patient ID : ";
-	    gets(pob.id);
+	   // gets(pob.id);
 	    pat_file<<pob.id<<"\n";
 	    cout<<"\nName : ";
 	    pat_file<<"Name : ";
 	    gets(pob.name);
+	    mob.name=pob.name;
 	    pat_file<<pob.name<<"\n";
 	    cout<<"\nAddress : ";
 	    pat_file<<"Address : ";
-	    gets(pob.address);
-	    pat_file<<pob.address<<"\n";
+	    gets(pob.city);
+	    mob.city=pob.city;
+	    pat_file<<pob.city<<"\n";
 	    cout<<"\nContact Number : ";
 	    pat_file<<"Contact Number : ";
 	    gets(pob.contact);
@@ -106,6 +121,7 @@ time_t rawtime;
 	    cout<<"\nBlood Group : ";
 	    pat_file<<"Blood Group : ";
 	    gets(pob.blood_gp);
+	    mob.blood_gp=pob.blood_gp;
 	    pat_file<<pob.blood_gp<<"\n";
 	    cout<<"\nAny Major disease suffered earlier : ";
 	    pat_file<<"Any Major disease suffered earlier : ";
@@ -114,6 +130,8 @@ time_t rawtime;
 
 	    cout<<"\n********************************************************************\n";pat_file<<"\n********************************************************************\n\n";
 	    cout<<"\nInformation Saved Successfully\n";
+
+
 	    }
 clrscr();
 //return();
