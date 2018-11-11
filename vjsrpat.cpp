@@ -1,4 +1,3 @@
-
 #include<fstream.h>
 #include<iostream.h>
 #include<conio.h>
@@ -18,14 +17,14 @@ struct patmain
 {
 int id;
 char name[20];
-char city[20];
+char city[30];
 char blood_gp[5];
 }mob;
 class patient
 {
 public:
 char name[20];
-char city[20];
+char city[30];
 char contact[10];
 char age[5];
 char sex[8];
@@ -102,7 +101,7 @@ time_t rawtime;
 
       cout<<"\n********************************************************************\n";pat_file<<"\n********************************************************************\n\n";//fn1353 st
 
-      cout<<"\nPatient ID : "<<pob.id;
+      cout<<"\nPatient ID(auto-genarated) : "<<pob.id;
       pat_file<<"Patient ID : ";
      // gets(pob.id);
       pat_file<<pob.id<<"\n";
@@ -111,8 +110,8 @@ time_t rawtime;
       gets(pob.name);
       strcpy(mob.name,pob.name);
       pat_file<<pob.name<<"\n";
-      cout<<"\nAddress : ";
-      pat_file<<"Address : ";
+      cout<<"\nCity : ";
+      pat_file<<"City : ";
       gets(pob.city);
       strcpy(mob.city,pob.city);
       pat_file<<pob.city<<"\n";
@@ -141,16 +140,21 @@ time_t rawtime;
       cout<<"\n********************************************************************\n";pat_file<<"\n********************************************************************\n\n";
       cout<<"\nInformation Saved Successfully\n";
       mfob.write((char*)&mob,sizeof(mob));
-	pattasks();    
 
       }
-clrscr();
+      
+      clrscr();
+      mfob.close();
+      pat_file.close();
+      cout<<"/n/n";
+      pattasks();
 //return();
 }
   void search_menu()
    {
     //T1.ssi_count=0;
-    char ent,s_choice;
+    char ent;
+    int s_choice;
     ifstream fob;
     fob.open("mf.dat",ios::binary);
     fob.seekg(1);
@@ -219,7 +223,7 @@ clrscr();
 		    cin>>s_group;
 		   }
 		   cout<<"\n\n\n";
-		  // search_blood_group(s_group);
+		   //search_blood_group(s_group);
 		   break;
 	       case 3:
 		   pattasks();
@@ -243,7 +247,7 @@ clrscr();
 	  while(!fin.eof())
 	    {
 	     fin.read((char*)&mob,sizeof(mob));
-	      if((strcmp(mob.city,s_city))==0)
+	      if(strcmp(mob.city,s_city)==0)
 		 {
 		    if(fin.eof())
 		      continue;
@@ -284,12 +288,14 @@ clrscr();
 			    }
 			  // else
 			  // after_search_options();
+          fin.close();
 
 
        } //end of function
 void app()
-{    char fname[20];
- //Appending diagnosis information of patient datewise.................option 2
+{   //Appending diagnosis information of patient datewise.......
+   char fname[20];
+ 
     fstream pat_file;
     cout<<"\nEnter the patient's file name to be opened : ";
     gets(fname);
@@ -302,7 +308,7 @@ void app()
     }
     else
     {
-	cout<<"\n\n\n\n\t........................................ Information about "<<fname<<" ........................................\n\n\n\n";
+	cout<<"\n\n\n\n\t.................................... Information about "<<fname<<" ................................\n\n\n\n";
 	char info[1000];
       while(pat_file)
       {
@@ -349,14 +355,16 @@ void app()
       pat_file<<"Type of ward : ";
       gets(add.ward);
        pat_file<<add.ward<<"\n";
-   pat_file<<"\n*************************************************************************\n";
+      pat_file<<"\n*************************************************************************\n";
       cout<<"\n\n"<<add.ward<<" ward is alloted Successfully\n";
-      pat_file.close();
-      cout<<"\n\n";
+       cout<<"\n\n";
       clrscr();
-     // return();
-	    pattasks();
-}
+      cout<<"\n\n";
+       // return();
+  }
+  pat_file.close();
+  pattasks();
+
 }
 void view()
 {
@@ -384,7 +392,8 @@ void view()
   }
   getch();
       clrscr();
-	pattasks();
+      cout<<"/n/n";
+      pattasks();
 }
 void search_view(int pid)
 {
@@ -396,10 +405,10 @@ void search_view(int pid)
       fob.read((char*)&mob,sizeof(mob));
 
       if(mob.id==pid)
-         {
-          strcpy(fname,mob.name);
-          break;
-         }
+	 {
+	  strcpy(fname,mob.name);
+	  break;
+	 }
     }
  clrscr();
   fstream pat_file;
@@ -423,4 +432,12 @@ void search_view(int pid)
       clrscr();
 }
 void del()
-{}
+{
+char fname[20];
+cout<<"Enter patient file name to delete:";
+gets(fname);
+remove("fname");
+cout<<"Patient file is deleted Successfully";
+cout<<"/n/n";
+pattasks();
+}
