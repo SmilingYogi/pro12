@@ -141,6 +141,7 @@ time_t rawtime;
       cout<<"\n********************************************************************\n";pat_file<<"\n********************************************************************\n\n";
       cout<<"\nInformation Saved Successfully\n";
       mfob.write((char*)&mob,sizeof(mob));
+	pattasks();    
 
       }
 clrscr();
@@ -354,6 +355,7 @@ void app()
       cout<<"\n\n";
       clrscr();
      // return();
+	    pattasks();
 }
 }
 void view()
@@ -382,6 +384,7 @@ void view()
   }
   getch();
       clrscr();
+	pattasks();
 }
 void search_view(int pid)
 {
