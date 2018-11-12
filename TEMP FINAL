@@ -103,7 +103,7 @@ void mains()
  clrscr();
  cout<<"\t \t\tWelcome to VJSRM system.."<<endl;
  cout<<"1.Login"<<endl;
- cout<<"2.Custemer care"<<endl;
+ cout<<"2.Customer care"<<endl;
  cout<<"3.shutdown"<<endl;
  cin>>o;
  switch(o)
@@ -123,7 +123,7 @@ void mains()
  {clrscr();
   char uname[20];
   char pass[20];
-  cout<<"Enter usename:"<<endl;
+  cout<<"Enter username:"<<endl;
   gets(uname);
   cout<<"Enter password:"<<endl;
   gets(pass);
@@ -193,8 +193,8 @@ pattasks();
    del(); break;
    case 6:
     submain(); break;
-   case 7:login();
-	 break;
+   case 7:
+   login(); break;
    case 8:mains();break;
    default:
     cout<<"Invalid choice!!!";
@@ -476,16 +476,25 @@ void app()
       pat_file<<"Medicines : ";
       gets(add.medicine);
       pat_file<<add.medicine<<"\n";
-      cout<<"\nAddmission Required? : ";
+      cout<<"\nAddmission Required?(y/n) : ";
       pat_file<<"Addmission Required? : ";
       gets(add.addmission);
       pat_file<<add.addmission<<"\n";
+      while(add.admission=='y'||add.admission=='Y')
+      {
+      cout<<"Available wards:"<<endl;
+      cout<<"1.Suite(10000/day)"<<endl;
+      cout<<"2.Deluxe(5000/day)"<<endl;
+      cout<<"3.Single A/C(2500/day)" <<endl;
+      cout<<"4.Single Non A/C(1000/day)"<<endl;
       cout<<"\nType of ward : ";
+
       pat_file<<"Type of ward : ";
       gets(add.ward);
-       pat_file<<add.ward<<"\n";
-      pat_file<<"\n*************************************************************************\n";
+      pat_file<<add.ward<<"\n";
       cout<<"\n\n"<<add.ward<<" ward is alloted Successfully\n";
+      }
+      pat_file<<"\n*************************************************************************\n";
        cout<<"\n\n";
       clrscr();
       cout<<"\n\n";
