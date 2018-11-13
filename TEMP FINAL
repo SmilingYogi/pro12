@@ -98,7 +98,8 @@ void main()
    getch();
 }
 void mains()
-{ clrscr();
+{
+ clrscr();
  int o;
  clrscr();
  cout<<"\t \t\tWelcome to VJSRM system.."<<endl;
@@ -108,19 +109,23 @@ void mains()
  cin>>o;
  switch(o)
  {
-  case 1:login();
+  case 1:
+	login();
 	 break;
-  case 2:cout<<"vjsrm web developers"<<endl;
+  case 2:
+	 cout<<"vjsrm web developers"<<endl;
 	 cout<<"palladam road"<<endl;
 	 cout<<"puliampatti (p.o),pollachi"<<endl;
 	 cout<<"4242435546"<<endl;
 	 cout<<"http://www.vjsrmdevelopers.com"<<endl;
 	 break;
-  case 3:exit(0);
+  case 3:
+	exit(0);
  }
  }
  void login()
- {clrscr();
+ {
+  clrscr();
   char uname[20];
   char pass[20];
   cout<<"Enter username:"<<endl;
@@ -128,7 +133,8 @@ void mains()
   cout<<"Enter password:"<<endl;
   gets(pass);
   if(strcmpi(pass,"gobanvj1")==0)
-  {cout<<"Login successfull!!!!"<<endl;
+  {
+   cout<<"Login successfull!!!!"<<endl;
   cout<<"welcome "<<uname<<"have a nice day..."<<endl;
   sleep(3);
   submain();
@@ -149,13 +155,18 @@ void submain()
  cout<<"4.Back to home"<<endl;
  cin>>smch;
  switch(smch)
- { case 1:doctor();
+ { case 1:
+	  doctor();
 	  break;
-   case 2:patient();
+   case 2:
+	  patient();
 	  break;
-   case 3:login();
+   case 3:
+	  login();
 	  break;
-   case 4:mains();
+   case 4:
+	mains();
+	break;
 
  }
 }
@@ -182,7 +193,8 @@ pattasks();
   cin>>c;
   switch(c)
   { case 1:
-   addpat(); break;
+      addpat();
+      break;
    case 2:
    search_menu();break;
    case 3:
@@ -413,7 +425,7 @@ time_t rawtime;
 			      cout<<"\n\n\n\t\tWhich patient ID : ";
 			      cin>>pid;
 
-			      view();
+			     search_view(pid);
 			    }
 			  // else
 			  // after_search_options();
@@ -460,7 +472,7 @@ void app()
 	char symptom[500];
 	char diagnosis[500];
 	char medicine[500];
-	char addmission[30];
+	char addmission;
 	char ward[15];
 	  };
       app add;
@@ -478,9 +490,10 @@ void app()
       pat_file<<add.medicine<<"\n";
       cout<<"\nAddmission Required?(y/n) : ";
       pat_file<<"Addmission Required? : ";
-      gets(add.addmission);
+      cin>>add.addmission;
+      char t=add.addmission;
       pat_file<<add.addmission<<"\n";
-      while(add.admission=='y'||add.admission=='Y')
+      while(t=='y'||t=='Y')
       {
       cout<<"Available wards:"<<endl;
       cout<<"1.Suite(10000/day)"<<endl;
@@ -488,9 +501,8 @@ void app()
       cout<<"3.Single A/C(2500/day)" <<endl;
       cout<<"4.Single Non A/C(1000/day)"<<endl;
       cout<<"\nType of ward : ";
-
       pat_file<<"Type of ward : ";
-      gets(add.ward);
+      cin>>add.ward;
       pat_file<<add.ward<<"\n";
       cout<<"\n\n"<<add.ward<<" ward is alloted Successfully\n";
       }
@@ -519,7 +531,7 @@ void view()
     }
     else
     {
-  cout<<"\n\n\n\n\t........................................ Full Medical History of "<<fname<<" ........................................\n\n\n\n";
+  cout<<"\n\n\n\n\t....................... Full Medical History of "<<fname<<" ................\n\n\n\n";
   char info[1000];
       while(pat_file)
       {
@@ -557,7 +569,7 @@ void search_view(int pid)
     }
     else
     {
-  cout<<"\n\n\n\n\t........................................ Full Medical History of "<<fname<<" ........................................\n\n\n\n";
+  cout<<"\n\n\n\n\t..................... Full Medical History of "<<fname<<" ......................\n\n\n\n";
   char info[1000];
       while(pat_file)
       {
@@ -608,13 +620,17 @@ switch(c)
 	 editdoc(); break;
    case 5:
 	 reset(); break;
-   case 6:submain();break;
-   case 7:login();
+   case 6:
+	 submain();break;
+   case 7:
+	login();
 	 break;
-   case 8:mains();break;
-
+   case 8:
+	mains();break;
+   default:
 	  cout<<"Invalid choice!!!";
- }}
+    }
+   }
  }
  void adddoc()
  {     //ofstream fil;
@@ -731,7 +747,7 @@ void reset()
  cout<<"WARNING:Once reset,data cannot be restored."<<endl;
  cout<<"Are you sure you want to reset?"<<endl;
  cin>>ho;
- if(ho='y')
+ if(ho=='y')
  cout<<"System reset successful....!!!!"<<endl;
  remove("doc.dat");
  }
