@@ -4,6 +4,7 @@
 #include<time.h>
 #include<string.h>
 #include<stdlib.h>
+#include<iomanip.h>
 #include<conio.h>
 #include<dos.h>
 #include<process.h>
@@ -60,7 +61,7 @@ void doctor::input()
 void doctor::show()
 {
 
- cout<<"|"<<docid<<"|"<<"\t"<<"|"<<docname<<"|"<<"\t"<<"|"<<docspecial<<"|"<<"\t"<<"|"<<docexp<<"|"<<endl;
+ cout<<setw(8)<<docid<<setw(15)<<docname<<setw(10)<<docspecial<<setw(8)<<docexp<<endl;
 
 
        //	cout<<"Doctor ID==> "<<docid<<endl;
@@ -130,6 +131,7 @@ void mains()
   char pass[20];
   cout<<"Enter username:"<<endl;
   gets(uname);
+  cout<<"Your password is:gobanvj1 (case sensitive)"<<endl;
   cout<<"Enter password:"<<endl;
   gets(pass);
   if(strcmpi(pass,"gobanvj1")==0)
@@ -148,7 +150,8 @@ void mains()
 void submain()
 {clrscr();
  int smch;
- cout<<"Make your choice..."<<endl;
+ cout<<"------------------------MAIN MENU-------------------------------"<<endl;
+ cout<<"\t\t\tMake your choice..."<<endl;
  cout<<"1.Doctor department"<<endl;
  cout<<"2.Patient departmnet"<<endl;
  cout<<"3.Back to login"<<endl;
@@ -598,7 +601,8 @@ char ch;
 ch='y';
 clrscr();
 while(ch=='y')
-{
+{ clrscr();
+cout<<"----------------------------------Doctor menu---------------------"<<endl;
 cout<<"Make your choice"<<endl;
 cout<<"1.Register new doctor"<<endl;
 cout<<"2.View doctor list"<<endl;
@@ -633,16 +637,23 @@ switch(c)
    }
  }
  void adddoc()
- {     //ofstream fil;
+ {      clrscr();
+	char c;
+	do
+	{
 	fil.open("doc.dat",ios::out| ios::binary|ios::ate);
 		dob.input();
 		fil.write((char*)&dob,sizeof(dob));
-
+	cout<<"Do you want to enter more doctors (y/Y)"<<endl;
+	cin>>c;
+	}
+	while((c=='y')||(c=='Y'));
 	fil.close();
 
 }
  void dispdoc()
-{       ifstream filo;
+{       clrscr();
+	ifstream filo;
 	filo.open("doc.dat",ios::in|ios::binary);
 	filo.seekg(0);
        if(!filo)
@@ -660,12 +671,13 @@ switch(c)
 			dob.show();
 			}
 
-			}
+		 }
 	}
 	filo.close();
+	getch();
 }
 void deldoc()		//Function to Delete Particular Record
-{
+{       clrscr();
 	char g;
 	int n;
 	cout<<"Enter ID that should be Deleted :";
@@ -707,7 +719,7 @@ void deldoc()		//Function to Delete Particular Record
      }
 }
 void editdoc()		//Function to Modify Particular Record from Data File
-{
+{       clrscr();
 	int n;
 	cout<<"Enter ID that should be searched:";
 	cin>>n;
@@ -742,7 +754,7 @@ void editdoc()		//Function to Modify Particular Record from Data File
 }
 
 void reset()
-{
+{ clrscr();
  char ho;
  cout<<"WARNING:Once reset,data cannot be restored."<<endl;
  cout<<"Are you sure you want to reset?"<<endl;
