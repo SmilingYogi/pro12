@@ -1,3 +1,4 @@
+
 #include<fstream.h>
 #include<iostream.h>
 #include<stdio.h>
@@ -29,12 +30,13 @@ void search_view(int);
 void search_menu();
 class doctor
 {
+public:
  char docname[20];
  char docspecial[20];
  int docid;
  int docexp;
  int docfee;
- 
+
  void setfee()
  {
   if (docexp<10)
@@ -44,7 +46,7 @@ class doctor
   else
     docfee=600;
  }
- 
+
  public:
   int getn()
 	{
@@ -62,7 +64,7 @@ void doctor::input()
   cout<<"Enter years of experience:"; cin>>docexp;
   setfee();
  }
- 
+
 void doctor::show()
 {
 
@@ -102,7 +104,7 @@ class patient
 
 
 void main()
-{ 
+{
    clrscr();
    mains();
    getch();
@@ -134,7 +136,7 @@ void mains()
 	exit(0);
   }
  }
- 
+
  void login()
  {
   clrscr();
@@ -152,13 +154,13 @@ void mains()
    submain();
   }
   else
-  { 
+  {
    cout<<"Wrong password....authentication failed"<<endl;
    sleep(4);
    exit(0);
   }
  }
- 
+
 void submain()
 {
  clrscr();
@@ -166,11 +168,12 @@ void submain()
  cout<<"Make your choice..."<<endl;
  cout<<"1.Doctor department"<<endl;
  cout<<"2.Patient departmnet"<<endl;
- cout<<"3.Back to login"<<endl;
- cout<<"4.Back to home"<<endl;
+ cout<<"3.Billing"<<endl;
+ cout<<"4.Back to login"<<endl;
+ cout<<"5.Back to home"<<endl;
  cin>>smch;
  switch(smch)
- { 
+ {
    case 1:
 	  doctor();
 	  break;
@@ -178,11 +181,17 @@ void submain()
 	  patient();
 	  break;
    case 3:
-	  login();
+	  billing();
 	  break;
    case 4:
-	mains();
-	break;
+	  login();
+	  break;
+   case 5:
+	  mains();
+	  break;
+   default:
+	  cout<<"Enter a correct choice";
+	  submain();
 
   }
 }
@@ -210,7 +219,7 @@ void patient()
   cout<<"8.Back to home"<<endl;
   cin>>c;
   switch(c)
-  { 
+  {
    case 1:
       addpat();
       break;
@@ -218,19 +227,19 @@ void patient()
       search_menu();
       break;
    case 3:
-      app(); 
+      app();
       break;
    case 4:
-      view(); 
+      view();
       break;
    case 5:
-      del(); 
+      del();
       break;
    case 6:
-      submain(); 
+      submain();
       break;
    case 7:
-      login(); 
+      login();
       break;
    case 8:
       mains();
@@ -334,7 +343,7 @@ void addpat()
 	cout<<"\tPlease enter some information first. "<<"\n";
 	cout<<"\n\n\tDo you want to enter now (Y/N) : ";
 	cin>>ent;
-         while(ent!='Y'&&ent!='y'&&ent!='N'&&ent!='n')
+	 while(ent!='Y'&&ent!='y'&&ent!='N'&&ent!='n')
 	   {
 	    cout<<"\n\tPlease enter a correct option (Y/N) : ";
 	    cin>>ent;
@@ -363,7 +372,7 @@ void addpat()
 		   cin.getline(s_city,30);
 		   cout<<"\n\n\n";
 		   while(strlen(s_city)==0) //if enter is pressed before input for city
-		   { 
+		   {
 		     cout<<"\n\tPlease enter a city : ";
 		     cin.getline(s_city,30);
 		    }
@@ -436,7 +445,7 @@ void addpat()
 		  getch();
 		 // after_search_options();
 	     }
-	     
+
 	      if(search_count>1)
 		cout<<"\t\t "<<search_count<<" results found !!! "<<"\n\n\n";
 	      if(search_count==1)
@@ -448,23 +457,23 @@ void addpat()
 		     cout<<"\n\n\t\tPlease enter a correct option .";
 		     cout<<"\n\t\tDo you want to view in detail (Y/N): ";
 		     cin>>after_search_answer;
-	        }
+		}
 	    if(after_search_answer=='y'||after_search_answer=='Y')
-	        {
+		{
 		     int pid;
 		     cout<<"\n\n\n\t\tWhich patient ID : ";
 		     cin>>pid;
-           	     search_view(pid);
-	        }
-			  
+		     search_view(pid);
+		}
+
 			  // after_search_options();
 	  fin.close();
 
 
        } //end of function
-       
+
 void app()
-{   
+{
   //Appending diagnosis information of patient datewise.
     char fname[20];
     fstream pat_file;
@@ -481,21 +490,21 @@ void app()
     {
 	cout<<"\n\n\n\n\t.................................... Information about "<<fname<<" ................................\n\n\n\n";
 	char info[1000];
-        while(pat_file)
-         {
-           pat_file.getline(info,1000);
-           cout<<info<<"\n";
-         }
-        time_t rawtime;
-        struct tm *timeinfo;
-        time(&rawtime);
-        timeinfo=localtime(&rawtime);
-        cout<<"\n";
-        pat_file.close();
-        pat_file.open(fname, ios::out | ios::app);
-        cout<<"\n";
-        cout<<"Adding more information in patient's file on : "<<asctime (timeinfo);
-        pat_file<<"Description of "<<asctime (timeinfo)<<"\n";
+	while(pat_file)
+	 {
+	   pat_file.getline(info,1000);
+	   cout<<info<<"\n";
+	 }
+	time_t rawtime;
+	struct tm *timeinfo;
+	time(&rawtime);
+	timeinfo=localtime(&rawtime);
+	cout<<"\n";
+	pat_file.close();
+	pat_file.open(fname, ios::out | ios::app);
+	cout<<"\n";
+	cout<<"Adding more information in patient's file on : "<<asctime (timeinfo);
+	pat_file<<"Description of "<<asctime (timeinfo)<<"\n";
 	class app
 	 {
 	   public:
@@ -505,37 +514,37 @@ void app()
 	   char addmission;
 	   char ward[15];
 	 };
-        app add;
-        cout<<"\nSymptoms : ";
-        pat_file<<"Symptoms : ";
-        gets(add.symptom);
-        pat_file<<add.symptom<<"\n";
-        cout<<"\nDiagnosis : ";
-        pat_file<<"Diagnosis : ";
-        gets(add.diagnosis);
-        pat_file<<add.diagnosis<<"\n";
-        cout<<"\nMedicines : ";
-        pat_file<<"Medicines : ";
-        gets(add.medicine);
-        pat_file<<add.medicine<<"\n";
-        cout<<"\nAddmission Required?(y/n) : ";
-        pat_file<<"Addmission Required? : ";
-        cin>>add.addmission;
-        char t=add.addmission;
-        pat_file<<add.addmission<<"\n";
-        while(t=='y'||t=='Y')
-        {
-         cout<<"Available wards:"<<endl;
-         cout<<"1.Suite(10000/day)"<<endl;
-         cout<<"2.Deluxe(5000/day)"<<endl;
-         cout<<"3.Single A/C(2500/day)" <<endl;
-         cout<<"4.Single Non A/C(1000/day)"<<endl;
-         cout<<"\nType of ward : ";
-         pat_file<<"Type of ward : ";
-         cin>>add.ward;
-         pat_file<<add.ward<<"\n";
-         cout<<"\n\n"<<add.ward<<" ward is alloted Successfully\n";
-        }
+	app add;
+	cout<<"\nSymptoms : ";
+	pat_file<<"Symptoms : ";
+	gets(add.symptom);
+	pat_file<<add.symptom<<"\n";
+	cout<<"\nDiagnosis : ";
+	pat_file<<"Diagnosis : ";
+	gets(add.diagnosis);
+	pat_file<<add.diagnosis<<"\n";
+	cout<<"\nMedicines : ";
+	pat_file<<"Medicines : ";
+	gets(add.medicine);
+	pat_file<<add.medicine<<"\n";
+	cout<<"\nAddmission Required?(y/n) : ";
+	pat_file<<"Addmission Required? : ";
+	cin>>add.addmission;
+	char t=add.addmission;
+	pat_file<<add.addmission<<"\n";
+	while(t=='y'||t=='Y')
+	{
+	 cout<<"Available wards:"<<endl;
+	 cout<<"1.Suite(10000/day)"<<endl;
+	 cout<<"2.Deluxe(5000/day)"<<endl;
+	 cout<<"3.Single A/C(2500/day)" <<endl;
+	 cout<<"4.Single Non A/C(1000/day)"<<endl;
+	 cout<<"\nType of ward : ";
+	 pat_file<<"Type of ward : ";
+	 cin>>add.ward;
+	 pat_file<<add.ward<<"\n";
+	 cout<<"\n\n"<<add.ward<<" ward is alloted Successfully\n";
+	}
        pat_file<<"\n*************************************************************************\n";
        cout<<"\n\n";
        clrscr();
@@ -644,21 +653,21 @@ void doctor()
   cout<<"8.Back to home"<<endl;
   cin>>c;
   switch(c)
-  { 
+  {
    case 1:
-	 adddoc(); 
+	 adddoc();
 	 break;
    case 2:
-	 dispdoc(); 
+	 dispdoc();
 	 break;
    case 3:
-	 deldoc(); 
+	 deldoc();
 	 break;
    case 4:
-	 editdoc(); 
+	 editdoc();
 	 break;
    case 5:
-	 reset(); 
+	 reset();
 	 break;
    case 6:
 	 submain();
@@ -674,9 +683,9 @@ void doctor()
     }
    }
  }
- 
+
  void adddoc()
- {     
+ {
      //ofstream fil;
      fil.open("doc.dat",ios::out| ios::binary|ios::ate);
      dob.input();
@@ -685,8 +694,8 @@ void doctor()
 }
 
  void dispdoc()
- {      
-     ifstream filo; 
+ {
+     ifstream filo;
      filo.open("doc.dat",ios::in|ios::binary);
      filo.seekg(0);
        if(!filo)
@@ -718,7 +727,7 @@ void deldoc()		//Function to Delete Particular Record
 	cout<<"Are you sure about deleting the doctor ID "<<n<<"for sure ?"<<endl;
 	cin>>g;
 	if(g=='y')
-        {
+	{
 	ofstream o;
 	o.open("new.dat",ios::out|ios::binary);
 	fil.open("doc.dat",ios::in| ios::binary);
@@ -757,7 +766,7 @@ void editdoc()		//Function to Modify Particular Record from Data File
 	int n;
 	cout<<"Enter ID that should be searched:";
 	cin>>n;
-	fil.open("doc.dat",ios::in| ios::out|ios::binary);
+	fil.open("doc.dat",ios::in|ios::binary);
 	if(!fil)
 	{
 		cout<<"File not Found";
@@ -789,12 +798,13 @@ void editdoc()		//Function to Modify Particular Record from Data File
 
 void billing()
 {
-  int pid,docid,days;
+  int pid,docid,days,n;
   ifstream fin;
   ifstream fil;
-  doctor dob;
+  //doctor ddob;
   patmain mob;
-  cout<<"***********************************************************************BILLING************************************************************";
+  cout<<"*********************************BILLING*************************************************";
+  cout<<endl;
   cout<<"Enter the Patient ID for which bill is to be generated:";
   cin>>pid;
   cout<<"Enter the ID of consulting doctor";
@@ -814,7 +824,7 @@ void billing()
 		{
 			if(n==dob.getn())
 			{
-        break;
+	break;
       }
     }
   }
@@ -824,9 +834,9 @@ void billing()
     {
      fin.read((char*)&mob,sizeof(mob));
       if(pid==mob.id)
-         {
-           break;
-         }
+	 {
+	   break;
+	 }
     }
     time_t rawtime;
     struct tm * timeinfo;
