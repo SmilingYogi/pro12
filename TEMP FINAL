@@ -24,6 +24,7 @@ void app();
 void pattasks();
 void view();
 void del();
+void billing();
 void search_city(char[]);
 void search_view(int);
 void search_menu();
@@ -751,6 +752,67 @@ void editdoc()		//Function to Modify Particular Record from Data File
 		}
 	}
 	fil.close();
+}
+void billing()
+{
+  int pid,docid,days,n;
+  ifstream fin;
+  ifstream fil;
+  //doctor ddob;
+  patmain mob;
+  cout<<"*********************************BILLING*************************************************";
+  cout<<endl;
+  cout<<"Enter the Patient ID for which bill is to be generated:";
+  cin>>pid;
+  cout<<"Enter the ID of consulting doctor";
+  cin>>docid;
+  cout<<"Enter number of days:";
+  cin>>days;
+  fil.open("doc.dat",ios::in| ios::out|ios::binary);
+	if(!fil)
+	{
+		cout<<"/n/nFile not Found";
+		getch();
+	}
+	else
+	{
+		fil.read((char*)&dob, sizeof(dob));
+		while(!fil.eof())
+		{
+			if(n==dob.getn())
+			{
+	break;
+      }
+    }
+  }
+
+  fin.open("mf.dat",ios::binary);
+  while(!fin.eof())
+    {
+     fin.read((char*)&mob,sizeof(mob));
+      if(pid==mob.id)
+	 {
+	   break;
+	 }
+    }
+    time_t rawtime;
+    struct tm * timeinfo;
+    time ( &rawtime );
+    timeinfo = localtime ( &rawtime );
+    cout<<"\n\n\t"<< asctime (timeinfo);
+    cout<<"/nPatient Name :";
+    cout<<mob.name;
+    cout<<"/nDoctor Name:";
+    cout<<dob.docname;
+    cout<<"/nDoctor Speciality:";
+    cout<<dob.docspecial;
+    cout<<"/nDoctor Fee :";
+    cout<<dob.docfee;
+    cout<<"/nBed Charge:";
+    cout<<300*days;
+    cout<<"Total Charge:";
+    cout<<dob.docfee+300*days;
+
 }
 
 void reset()
