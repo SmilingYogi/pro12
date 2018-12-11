@@ -1,3 +1,4 @@
+
 #include<fstream.h>
 #include<iostream.h>
 #include<stdio.h>
@@ -325,7 +326,7 @@ void addpat()
  }
  void search_menu()
 {
-    //T1.ssi_count=0;
+    
     char ent;
     int s_choice;
     ifstream fob;
@@ -347,11 +348,11 @@ void addpat()
 	    addpat();
 	   else
 	    pattasks();
-   }
+    }
       //T1.search_number=0;
       cout<<"\n\n\t\t ***SEARCH MENU***"<<"\n";
       cout<<"\n\n\t\t 1. Search by city "<<"\n";
-	    cout<<"\t\t 2. Search by blood group "<<"\n";
+	    cout<<"\t\t 2. Search by blood group(Under development) "<<"\n";
 	    cout<<"\t\t 3. Return to main menu "<<"\n";
 	    cout<<"\n\n\t Enter your choice : ";
 	    cin>>s_choice;
@@ -375,30 +376,12 @@ void addpat()
 
 	    case 2:
 		   cout<<"\n\n\t\t***SEARCHING BY BLOOD GROUP***\n";
-		   cout<<"\n\n\t\t ***BLOOD GROUP MENU***\n\n";
-		   cout<<"\t1. A+ "<<"\n";
-		   cout<<"\t2. A- "<<"\n";
-		   cout<<"\t3. B+ "<<"\n";
-		   cout<<"\t4. B- "<<"\n";
-		   cout<<"\t5. AB+ "<<"\n";
-		   cout<<"\t6. AB- "<<"\n";
-		   cout<<"\t7. O+ "<<"\n";
-		   cout<<"\t8. O- "<<"\n";
-		   int s_group;
-		   cout<<"\n\n Enter the serial of your required group : ";
-		   cin>>s_group;
-		   while(s_group!=1&&s_group!=2&&s_group!=3&&s_group!=4&& s_group!=5&&s_group!=6&&s_group!=7&&s_group!=8)
-		   {
-		    cout<<"\n";
-		    cout<<"\tInvalid search criteria !!!"<<"\n";
-		    cout<<"\tValid serials are 1 to 8."<<"\n";
-		    cout<<"\tEnter a valid blood group : ";
-		    cin>>s_group;
-		   }
-		   cout<<"\n\n\n";
-		   //search_blood_group(s_group);
+       cout<<"Under development!!";
+       cout<<"\nRedirecting to search menu->->->->->->->";
+       sleep(3);
+		   search_menu();
 		   break;
-	       case 3:
+	    case 3:
 		   pattasks();
 		   break;
 	       default:
