@@ -497,7 +497,7 @@ void app()
       cin>>add.addmission;
       char t=add.addmission;
       pat_file<<add.addmission<<"\n";
-      while(t=='y'||t=='Y')
+      if(t=='y'||t=='Y')
       {
       cout<<"Available wards:"<<endl;
       cout<<"1.Suite(10000/day)"<<endl;
