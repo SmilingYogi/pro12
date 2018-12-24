@@ -812,6 +812,7 @@ void billing()
     cout<<300*days;
     cout<<"Total Charge:";
     cout<<dob.docfee+300*days;
+    getch();
 
 }
 
