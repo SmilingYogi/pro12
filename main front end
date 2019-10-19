@@ -20,7 +20,7 @@ void main()
   case 2:cout<<"vjsrm web developers"<<endl;
 	 cout<<"palladam road"<<endl;
 	 cout<<"puliampatti (p.o),pollachi"<<endl;
-	 cout<<"4242435546"<<endl;
+	 cout<<"424"<<endl;
 	 cout<<"http://www.vjsrmdevelopers.com"<<endl;
 	 break;
   case 3:exit(0);
