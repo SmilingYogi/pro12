@@ -1,3 +1,4 @@
+//funtion for all features of doc module
 #include<fstream.h>
 #include<iostream.h>
 #include<conio.h>
