@@ -1,4 +1,3 @@
-A cpp program for hospital management system
-Please contribute
+C++ program for Hospital management 
 
 
